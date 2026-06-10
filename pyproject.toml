@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "organic-qc-bench"
+version = "0.1.0"
+description = "Benchmark suite for engineered organic quantum platforms (Wakaura & Tanimae, QIRI 2026)."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Hikaru Wakaura", email = "h.wakaura@deeptell.jp" },
+    { name = "Taiki Tanimae",  email = "t.tanimae@deeptell.jp" },
+]
+keywords = [
+    "quantum computing", "quantum reservoir computing",
+    "covariant quantum error correction", "Petz recovery",
+    "Bernstein-Vazirani", "Shor-Regev", "QPE", "qDRIFT",
+    "organic radicals", "PTM-COF", "SVILC", "BEDT-TTF",
+    "SSH soliton", "polyacetylene",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.22",
+    "scipy>=1.8",
+]
+
+[project.optional-dependencies]
+ml      = ["scikit-learn>=1.0"]
+figures = ["matplotlib>=3.5"]
+dev     = ["pytest>=7.0", "scikit-learn>=1.0", "matplotlib>=3.5"]
+
+[project.urls]
+Homepage      = "https://github.com/qiri-jp/organic-qc-bench"
+Issues        = "https://github.com/qiri-jp/organic-qc-bench/issues"
+Paper         = "https://doi.org/10.21203/rs.3.rs-9278975/v1"
+CompanionPreprint = "https://doi.org/10.21203/rs.3.rs-9278975/v1"
+
+[project.scripts]
+organic-qc-bench = "organic_qc_bench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"organic_qc_bench" = ["py.typed"]
