@@ -1,5 +1,5 @@
 ---
-title: "`organic-qc-bench`: A reproducible benchmark suite for Petz-style covariant recovery on dephasing--depolarizing channels"
+title: "organic-qc-bench: A reproducible benchmark suite for Petz-style covariant recovery on dephasing--depolarizing channels"
 tags:
   - Python
   - quantum information
@@ -64,16 +64,13 @@ quantum-information theory
 [@Petz1986; @SutterBertaTomamichel2016; @JungeSutterWilde2018].
 However, *implementable* and *reproducible* reference codes for
 benchmarking such recovery maps on physically motivated noise channels
-are still scarce. Existing density-matrix simulators (`QuTiP`
-[@Johansson2013], `Qiskit Aer`) provide the underlying linear algebra
-but do not ship Petz-style recovery primitives, organic-host noise
-profiles, or a publication-grade benchmark driver. Researchers who
-wish to study approximate recovery on near-entanglement-breaking
-channels must therefore re-derive the recovery formulae and rewrite
-the boilerplate every time.
+are still scarce. Researchers who wish to study approximate recovery
+on near-entanglement-breaking channels must therefore re-derive the
+recovery formulae and rewrite the boilerplate every time.
 
-`organic-qc-bench` fills this gap by providing a focused, dependency-light,
-test-covered reference implementation. It is intended for two audiences:
+`organic-qc-bench` fills this gap by providing a focused,
+dependency-light, test-covered reference implementation. It is
+intended for two audiences:
 
 1. Quantum-information theorists who want a quickly modifiable
    numerical sandbox to test recovery-map proposals on realistic
@@ -85,11 +82,31 @@ test-covered reference implementation. It is intended for two audiences:
    who want a ready-to-run noise-channel benchmark with parameter
    profiles tied to real material classes
    [@HoreMouritsen2016; @Schaefter2023PTM; @Boehme2009; @MannBayliss2026],
-   without having to assemble the simulation infrastructure from scratch.
+   without having to assemble the simulation infrastructure from
+   scratch.
 
 The package is small (less than 1\,000 lines of pure Python in
 `src/`), has only `numpy` and `scipy` as runtime dependencies, and
 runs every smoke test in well under a second on a laptop.
+
+# State of the field
+
+Existing general-purpose density-matrix simulators such as `QuTiP`
+[@Johansson2013] and `Qiskit Aer` provide the underlying linear
+algebra and Lindblad solvers needed to simulate noisy quantum
+channels, but they do not ship Petz-style recovery primitives,
+organic-host noise-parameter profiles, or a publication-grade
+$\gamma$-sweep / peak-scaling benchmark driver.
+Symbolic packages such as `SymPy` can in principle derive the
+recovery-map formulae case by case but do not provide a numerical
+benchmark harness. Research codes accompanying individual
+recovery-map papers tend to be one-off scripts without continuous
+integration, type hints, or a programmatic API.
+`organic-qc-bench` is, to our knowledge, the first standalone Python
+package that exposes a CPTP Petz-style recovery map together with a
+reproducible $\gamma$-sweep driver, physically motivated noise
+profiles, and a continuous-integration matrix, in a form that can be
+extended without modifying the upstream package.
 
 # Functionality
 
@@ -174,5 +191,14 @@ The package ships with:
 We thank colleagues at QIRI for valuable discussions. This work was
 supported entirely by QIRI (Quantum Integrated Research Institute
 Inc.).
+
+# AI usage disclosure
+
+Portions of this software's documentation, the structure of this
+manuscript, and a subset of the test cases were drafted with the
+assistance of a large language model. All code, all numerical
+results, all mathematical derivations, and the final wording of this
+paper were reviewed, verified, and approved by the human authors,
+who take full responsibility for the contents.
 
 # References
